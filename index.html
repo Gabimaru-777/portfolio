@@ -3,289 +3,389 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Srikar | Next Level Developer</title>
+<title>Srikar | Premium Portfolio</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
 }
 
 body{
-    background:#0f0f0f;
-    color:white;
-    overflow-x:hidden;
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
 }
 
 canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:-1;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
 }
 
-/* Navbar */
+/* NAV */
 nav{
-    position:fixed;
-    width:100%;
-    padding:20px 10%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    backdrop-filter:blur(10px);
-    background:rgba(255,255,255,0.05);
-    z-index:100;
+  position:fixed;
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.03);
+  z-index:100;
 }
 
 nav h2{
-    font-weight:900;
-    letter-spacing:2px;
-    color:#00ffff;
+  font-weight:800;
 }
 
 nav ul{
-    display:flex;
-    gap:30px;
-    list-style:none;
+  display:flex;
+  gap:30px;
+  list-style:none;
 }
 
 nav ul li{
-    cursor:pointer;
-    transition:.3s;
+  cursor:pointer;
+  position:relative;
 }
 
-nav ul li:hover{
-    color:#00ffff;
+nav ul li::after{
+  content:'';
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-5px;
+  left:0;
+  background:white;
+  transition:.3s;
 }
 
-/* Hero Section */
+nav ul li:hover::after{
+  width:100%;
+}
+
+/* HERO */
 .hero{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    padding:0 10%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
 .hero h1{
-    font-size:4rem;
-    font-weight:900;
-    background:linear-gradient(90deg,#00ffff,#ff00ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation: glow 2s infinite alternate;
-}
-
-.hero p{
-    margin-top:20px;
-    font-size:1.3rem;
-    opacity:.8;
+  font-size:4rem;
+  font-weight:800;
+  background:linear-gradient(90deg,#00ffff,#ff00ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: glow 3s infinite alternate;
 }
 
 @keyframes glow{
-    from{ text-shadow:0 0 10px #00ffff;}
-    to{ text-shadow:0 0 30px #ff00ff;}
+  from{ text-shadow:0 0 10px #00ffff;}
+  to{ text-shadow:0 0 40px #ff00ff;}
 }
 
-/* Sections */
+.hero p{
+  margin-top:20px;
+  opacity:.7;
+}
+
+/* SECTIONS */
 section{
-    padding:120px 10%;
+  padding:120px 10%;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
 }
 
-.card{
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(20px);
-    border-radius:20px;
-    padding:40px;
-    margin-top:40px;
-    transform:translateY(50px);
-    opacity:0;
-    transition:1s;
+section.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.card.show{
-    transform:translateY(0);
-    opacity:1;
+/* LUXURY SECTION SYSTEM */
+.lux-section{
+  padding:150px 10%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s ease;
 }
 
-.card h2{
-    margin-bottom:20px;
-    color:#00ffff;
+.lux-section.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.card:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 30px rgba(0,255,255,0.3);
-    transition:.4s;
+.lux-card{
+  width:100%;
+  max-width:800px;
+  text-align:center;
+  padding:70px 50px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  position:relative;
+  transition:.4s ease;
 }
 
-/* Footer */
-footer{
-    text-align:center;
-    padding:40px;
-    opacity:.6;
+.lux-card h2{
+  margin-bottom:25px;
+  font-size:2rem;
+  font-weight:600;
 }
 
-@media(max-width:768px){
-    .hero h1{
-        font-size:2.5rem;
-    }
+.lux-card p{
+  opacity:.8;
+  line-height:1.7;
 }
+
+.lux-card:hover{
+  transform:translateY(-10px);
+  background:rgba(255,255,255,0.08);
+}
+
+/* Glowing Border */
+.lux-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  padding:1px;
+  background:linear-gradient(90deg,#00ffff,#ff00ff);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:0.4;
+  pointer-events:none;
+}
+
+/* Button */
+.lux-btn{
+  display:inline-block;
+  margin-top:35px;
+  padding:14px 40px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+  background:linear-gradient(90deg,#00ffff,#ff00ff);
+  color:white;
+  transition:.4s ease;
+}
+
+.lux-btn:hover{
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 0 30px rgba(0,255,255,0.6);
+}
+
+
 </style>
 </head>
+
 <body>
 
 <nav>
-    <h2>SRIKAR</h2>
-    <ul>
-        <li onclick="scrollToSection('about')">About</li>
-        <li onclick="scrollToSection('projects')">Projects</li>
-        <li onclick="scrollToSection('contact')">Contact</li>
-    </ul>
+  <h2>Srikar</h2>
+  <ul>
+    <li onclick="scrollToSection('about')">About</li>
+    <li onclick="scrollToSection('projects')">Projects</li>
+    <li onclick="scrollToSection('contact')">Contact</li>
+  </ul>
 </nav>
 
 <div class="hero">
-    <h1>I AM SRIKAR</h1>
-    <p>The Future. The Vision. The Execution. <br>
-    I don't just build websites. I build digital dominance.</p>
+  <h1>Srikar</h1>
+  <p>Depth. Precision. Controlled Motion.</p>
 </div>
 
-<section id="about">
-    <div class="card">
-        <h2>Who is Srikar?</h2>
-        <p>
-        Srikar is not just another developer.  
-        He is a digital architect. A code warrior. A creator of immersive experiences.  
-        From clean logic to insane animations — precision meets power.
-        </p>
-    </div>
+
+
+<section id="about" class="lux-section">
+  <div class="lux-card">
+    <h2>About</h2>
+    <p>
+      I design immersive digital systems with refined aesthetics and
+      intentional interaction. Every detail is crafted for clarity,
+      depth, and precision.
+    </p>
+  </div>
 </section>
 
-<section id="projects">
-    <div class="card">
-        <h2>Projects</h2>
-        <p>
-        🚀 High-performance web apps  
-        🎯 Advanced JavaScript systems  
-        💎 Beautiful UI/UX interfaces  
-        🔥 3D interactive experiences  
-        </p>
-    </div>
+<section id="projects" class="lux-section">
+  <div class="lux-card">
+    <h2>Projects</h2>
+    <p>
+      🚀 High-performance Web Applications<br><br>
+      💻 Interactive Systems<br><br>
+      🎨 Modern Interface Design
+    </p>
+  </div>
 </section>
 
-<section id="contact">
-    <div class="card">
-        <h2>Contact Srikar</h2>
-        <p>
-Ready to build something legendary? <br><br>
+<section id="contact" class="lux-section">
+  <div class="lux-card">
+    <h2>Contact</h2>
+    <p>
+      Ready to build something exceptional?<br>
+      Let’s create something that stands out.
+    </p>
 
-Email me directly at:<br><br>
-
-<a href="mailto:thotasrikar80@gmail.com" 
-   style="color:#00ffff; font-weight:600; text-decoration:none;">
-   thotasrikar80@gmail.com
-</a>
-</p>
-    </div>
+    <a href="mailto:thotasrikar80@gmail.com" class="lux-btn">
+      Email Srikar
+    </a>
+  </div>
 </section>
+
+
 
 <footer>
-    © 2026 Srikar — Built Different.
+  © 2026 Srikar — Designed with precision.
 </footer>
 
-<!-- Three.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
-// 3D BACKGROUND
-
+// SCENE
 const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x050505, 20, 80);
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({alpha:true});
+const renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// PARTICLE GALAXY BACKGROUND
+camera.position.z = 35;
 
+// LIGHTING
+const light1 = new THREE.PointLight(0xffffff, 1.5);
+light1.position.set(20,20,20);
+scene.add(light1);
+
+const light2 = new THREE.PointLight(0xff00ff, 1);
+light2.position.set(-20,-20,-20);
+scene.add(light2);
+
+// GROUP FOR RINGS
+const group = new THREE.Group();
+
+function createRing(radius, thickness){
+  const geometry = new THREE.TorusGeometry(radius, thickness, 32, 200);
+  const material = new THREE.MeshStandardMaterial({
+    color:0xaaaaaa,
+    metalness:1,
+    roughness:0.2
+  });
+  return new THREE.Mesh(geometry, material);
+}
+
+const ring1 = createRing(10,0.4);
+const ring2 = createRing(14,0.3);
+const ring3 = createRing(18,0.25);
+
+ring2.rotation.x = Math.PI/4;
+ring3.rotation.y = Math.PI/6;
+
+group.add(ring1);
+group.add(ring2);
+group.add(ring3);
+
+scene.add(group);
+
+// SUBTLE PARTICLES (CLEAN, NOT MESSY)
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 4000;
+const particlesCount = 300;
 
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount * 3; i++){
-    posArray[i] = (Math.random() - 0.5) * 200;
+  posArray[i] = (Math.random() - 0.5) * 60;
 }
 
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray,3));
+
+// Create circular texture for particles
+const canvas = document.createElement('canvas');
+canvas.width = 64;
+canvas.height = 64;
+
+const ctx = canvas.getContext('2d');
+const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+gradient.addColorStop(0, "rgba(255,255,255,1)");
+gradient.addColorStop(0.4, "rgba(255,255,255,0.8)");
+gradient.addColorStop(1, "rgba(255,255,255,0)");
+
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, 64, 64);
+
+const texture = new THREE.CanvasTexture(canvas);
 
 const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.7,
-    color: 0x00ffff
+  size: 0.6,
+  map: texture,
+  transparent: true,
+  depthWrite: false
 });
 
-const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-scene.add(particlesMesh);
 
-camera.position.z = 60;
-
-// Mouse movement effect
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX - window.innerWidth / 2) / 100;
-    mouseY = (event.clientY - window.innerHeight / 2) / 100;
-});
+const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particles);
 
 function animate(){
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    particlesMesh.rotation.y += 0.0005;
-    particlesMesh.rotation.x += 0.0003;
+  ring1.rotation.x += 0.01;
+  ring1.rotation.y += 0.005;
 
-    particlesMesh.rotation.x += mouseY * 0.0005;
-    particlesMesh.rotation.y += mouseX * 0.0005;
+  ring2.rotation.y -= 0.007;
+  ring3.rotation.x += 0.004;
 
-    renderer.render(scene, camera);
+  particles.rotation.y += 0.0008;
+
+  renderer.render(scene,camera);
 }
 
 animate();
 
-
-window.addEventListener('resize', ()=>{
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
+window.addEventListener('resize',()=>{
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
 });
 
-// Scroll Animations
-const cards = document.querySelectorAll('.card');
-
-window.addEventListener('scroll',()=>{
-    cards.forEach(card=>{
-        const top = card.getBoundingClientRect().top;
-        if(top < window.innerHeight - 100){
-            card.classList.add('show');
-        }
-    });
+// SCROLL REVEAL
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
 });
 
-// Smooth Scroll
 function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({
-        behavior:'smooth'
-    });
+  document.getElementById(id).scrollIntoView({
+    behavior:'smooth'
+  });
 }
 </script>
 
 </body>
 </html>
+
 
 
